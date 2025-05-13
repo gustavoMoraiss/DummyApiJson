@@ -23,7 +23,7 @@ const Categories: FC<Props> = props => {
             style={[
               styles.itemContainer,
               selected ? styles.selectedItemContainer : {},
-              index === 0 ? {marginLeft: 32} : {},
+              index === 0 ? {marginLeft: 20} : {},
             ]}>
             <Text style={[styles.item, selected ? styles.selectedItem : {}]}>
               {item}

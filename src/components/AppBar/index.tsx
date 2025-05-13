@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {Pressable, View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 import styles from './style';
 import Icon from '@react-native-vector-icons/ionicons';
 
@@ -11,12 +11,19 @@ interface Props {
 const AppBar: FC<Props> = props => {
   return (
     <View style={styles.container}>
-      <Pressable onPress={props.onPressLeftIcon} style={styles.iconBackground}>
+      <TouchableOpacity
+        onPress={props.onPressLeftIcon}
+        style={styles.iconBackground}>
         <Icon name="menu" size={24} />
-      </Pressable>
-      <Pressable onPress={props.onPressRightIcon} style={styles.iconBackground}>
-        <Icon name="search" size={24} />
-      </Pressable>
+      </TouchableOpacity>
+
+      {props.onPressRightIcon && (
+        <TouchableOpacity
+          onPress={props.onPressRightIcon}
+          style={styles.iconBackground}>
+          <Icon name="search" size={24} />
+        </TouchableOpacity>
+      )}
     </View>
   );
 };

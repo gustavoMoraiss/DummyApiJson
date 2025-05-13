@@ -10,11 +10,13 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: 'bold',
     color: colors.textDark,
+    fontFamily: 'Inter_18pt-Black',
   },
   subTitle: {
     fontSize: 15,
     color: colors.textGray,
     marginTop: 5,
+    fontFamily: 'Inter_18pt-Black',
   },
 });
 
