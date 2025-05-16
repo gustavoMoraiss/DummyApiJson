@@ -7,6 +7,7 @@ import getAllProducts, {
 } from '../../service/getAllProductsService';
 import {getAllCategories} from '../../service/getAllCategories';
 import Categories from '../../components/Categories';
+import ProductCard from '../../components/ProductCard';
 
 const All = 'All';
 
@@ -41,6 +42,7 @@ const Home = () => {
         data={data}
         ListEmptyComponent={<Text>No item found</Text>}
         numColumns={2}
+        style={{flexGrow: 1}}
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={
           <>
@@ -54,7 +56,14 @@ const Home = () => {
           </>
         }
         keyExtractor={product => String(product?.id)}
-        renderItem={({item, index}) => <Text>O</Text>}
+        renderItem={({item, index}) => (
+          <ProductCard
+            title={item.title}
+            price={item.price.toString()}
+            imageSrc={item.images[0]}
+            onPress={() => console.log(item)}
+          />
+        )}
       />
     </SafeAreaView>
   );
