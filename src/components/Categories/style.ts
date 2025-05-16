@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   selectedItem: {
-    color: colors.white,
+    color: colors.textDark,
   },
   itemContainer: {
     marginVertical: 14,
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   },
   selectedItemContainer: {
     padding: 8,
-    backgroundColor: colors.blue,
+    backgroundColor: colors.lightGray,
     width: 94,
     height: 50,
     borderRadius: 12,
