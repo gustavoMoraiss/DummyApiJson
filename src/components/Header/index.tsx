@@ -1,19 +1,21 @@
 import React, {FC} from 'react';
-import {Text, View} from 'react-native';
+import {StyleProp, Text, TextStyle, View} from 'react-native';
 import styles from './style';
 
 interface Props {
   title: string;
   subTitle: string;
+  headingStyle?: StyleProp<TextStyle>;
+  subHeadingStyle?: StyleProp<TextStyle>;
 }
 
 const Header: FC<Props> = props => {
-  const {title, subTitle} = props;
+  const {title, subTitle, headingStyle, subHeadingStyle} = props;
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.subTitle}>{subTitle}</Text>
+      <Text style={[styles.title, headingStyle]}>{title}</Text>
+      <Text style={[styles.subTitle, subHeadingStyle]}>{subTitle}</Text>
     </View>
   );
 };

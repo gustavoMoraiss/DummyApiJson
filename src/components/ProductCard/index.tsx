@@ -19,7 +19,7 @@ const ProductCard: FC<Props> = props => {
         <Image style={styles.image} source={{uri: props.imageSrc}} />
       </View>
       <Text style={styles.description}>{props.title}</Text>
-      <Text style={styles.value}>{`$${props.price}`}</Text>
+      <Text style={styles.value}>{props.price}</Text>
     </TouchableOpacity>
   );
 };

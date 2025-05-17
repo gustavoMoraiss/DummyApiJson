@@ -24,16 +24,30 @@ const styles = StyleSheet.create({
   detailsContainer: {
     marginHorizontal: 20,
   },
-  title: {
+  footer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderRadius: 15,
+    backgroundColor: 'rgba( 256, 256, 256, 0.35)',
     marginTop: 20,
-    color: colors.textDark,
-    fontSize: 17,
-    fontWeight: 'bold',
   },
-  description: {
-    marginTop: 10,
-    color: colors.textGray,
-    fontSize: 15,
+  miniImage: {
+    width: 77,
+    height: 77,
+    borderRadius: 10,
+  },
+  moreImagesContainer: {
+    backgroundColor: 'rgba(0,0,0,0.38)',
+    width: 77,
+    height: 77,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  moreImages: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 20,
   },
 });
 

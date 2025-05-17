@@ -2,19 +2,24 @@ import React, {useEffect, useState} from 'react';
 import {FlatList, SafeAreaView, Text, View} from 'react-native';
 import AppBar from '../../components/AppBar';
 import Header from '../../components/Header';
-import getAllProducts, {
-  GetAllProducts,
-} from '../../service/getAllProductsService';
+import getAllProducts, {Product} from '../../service/getAllProductsService';
 import {getAllCategories} from '../../service/getAllCategories';
 import Categories from '../../components/Categories';
 import ProductCard from '../../components/ProductCard';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
+import {HomeParams} from '../../@types/navigation';
+import {formatUSD} from '../../utils/format';
+import styles from './style';
+
+interface Props {}
 
 const All = 'All';
 
 const Home = () => {
-  const [data, setData] = useState<GetAllProducts[]>([]);
+  const [data, setData] = useState<Product[]>([]);
   const [currentCategory, setCurrentCategory] = useState<string>(All);
   const [categories, setCategories] = useState<string[]>([]);
+  const navigation = useNavigation<NavigationProp<HomeParams>>();
 
   useEffect(() => {
     setData(getAllProducts);
@@ -37,7 +42,7 @@ const Home = () => {
   }, [currentCategory]);
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <FlatList
         data={data}
         ListEmptyComponent={<Text>No item found</Text>}
@@ -59,9 +64,11 @@ const Home = () => {
         renderItem={({item, index}) => (
           <ProductCard
             title={item.title}
-            price={item.price.toString()}
+            price={formatUSD(item.price)}
             imageSrc={item.images[0]}
-            onPress={() => console.log(item)}
+            onPress={() => {
+              navigation.navigate('ProductDetails', {itemProduct: item});
+            }}
           />
         )}
       />
