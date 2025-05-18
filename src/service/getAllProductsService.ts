@@ -1,3 +1,7 @@
+export type ProductsResponse = {
+  products: Product[];
+};
+
 export type Product = {
   id: number;
   title: string;

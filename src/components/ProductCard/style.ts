@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: '100%',
-    height: 203,
+    height: 293,
     borderRadius: 15,
   },
 });
