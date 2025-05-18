@@ -5,6 +5,7 @@ const colors = {
   mediumGray: '#D9D9D9',
   blue: '#3D93F8',
   white: '#FFFFFF',
+  midWhite: '#FEFEFE'
 };
 
 export default colors;
