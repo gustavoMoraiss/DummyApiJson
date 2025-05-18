@@ -61,7 +61,7 @@ const Home = () => {
           </>
         }
         keyExtractor={product => String(product?.id)}
-        renderItem={({item, index}) => (
+        renderItem={({item}) => (
           <ProductCard
             title={item.title}
             price={formatUSD(item.price)}

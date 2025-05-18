@@ -6,6 +6,7 @@ const {height} = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingBottom: 30,
   },
   smallTitle: {
     fontSize: 15,
@@ -18,7 +19,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     flexDirection: 'column',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'flex-start',
   },
   detailsContainer: {
     marginHorizontal: 20,

@@ -6,7 +6,6 @@ const {height} = Dimensions.get('window');
 const styles = StyleSheet.create({
   footer: {
     borderRadius: 15,
-    backgroundColor: 'rgba( 256, 256, 256, 0.35)',
     marginTop: 20,
     marginRight: 16,
     flex: 1,
@@ -21,7 +20,7 @@ const styles = StyleSheet.create({
     marginRight: 9,
   },
   moreImagesContainer: {
-    backgroundColor: 'rgba(0,0,0,0.38)',
+    backgroundColor: colors.textGray,
     width: 77,
     height: 77,
     borderRadius: 10,

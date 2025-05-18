@@ -20,11 +20,13 @@ import ReviewItem from '../../components/ReviewItem';
 import TitleWithValue from '../../components/TitleWithValue';
 import Header from '../../components/Header';
 import Rating from '../../components/Rating';
+import BackButton from '../../components/BackButton';
 
 type Props = NativeStackScreenProps<HomeParams, 'ProductDetails'>;
 
-const ProductDetails: FC<Props> = ({route}) => {
-  const {itemProduct} = route.params;
+const ProductDetails: FC<Props> = ({route, navigation}) => {
+  const {images, category, rating, price, title, description, reviews} =
+    route.params.itemProduct;
 
   return (
     <SafeAreaView style={styles.container}>
@@ -32,30 +34,32 @@ const ProductDetails: FC<Props> = ({route}) => {
         <ImageBackground
           style={styles.mainImage}
           imageStyle={{borderRadius: 20}}
-          source={{uri: itemProduct.images[0]}}></ImageBackground>
+          source={{uri: images[0]}}>
+          <BackButton onPress={() => navigation.goBack()} />
+        </ImageBackground>
         <View style={styles.detailsContainer}>
           <View style={styles.categoryContainer}>
-            <Text style={styles.smallTitle}>{itemProduct.category}</Text>
-            <Rating rate={itemProduct.rating} />
+            <Text style={styles.smallTitle}>{category}</Text>
+            <Rating rate={rating} />
           </View>
           <TitleWithValue
-            title={itemProduct.title}
-            value={formatUSD(itemProduct.price)}
+            title={title}
+            value={formatUSD(price)}
             style={{fontSize: 22}}
           />
           <ImagePreview
-            images={itemProduct.images}
+            images={images}
             onImagePreviewPress={() => console.log()}
           />
           <Header
             title="Description"
-            subTitle={itemProduct.description}
+            subTitle={description}
             headingStyle={styles.title}
             subHeadingStyle={styles.description}
           />
           <Text style={[styles.title, {marginTop: 15}]}>Reviews</Text>
           <FlatList
-            data={itemProduct.reviews}
+            data={reviews}
             ListEmptyComponent={<Text>No reviews available</Text>}
             style={{flexGrow: 1}}
             showsVerticalScrollIndicator={false}

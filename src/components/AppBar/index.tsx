@@ -4,22 +4,22 @@ import styles from './style';
 import Icon from '@react-native-vector-icons/ionicons';
 
 interface Props {
-  onPressRightIcon?(): void;
+  leftIconName: string;
+  rightIconName?: string;
+  onPressRightIcon(): void;
   onPressLeftIcon?(): void;
 }
 
-const AppBar: FC<Props> = props => {
+const AppBar: FC<Props> = ({onPressRightIcon, onPressLeftIcon}) => {
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        onPress={props.onPressLeftIcon}
-        style={styles.iconBackground}>
+      <TouchableOpacity onPress={onPressLeftIcon} style={styles.iconBackground}>
         <Icon name="menu" size={24} />
       </TouchableOpacity>
 
-      {props.onPressRightIcon && (
+      {onPressRightIcon && (
         <TouchableOpacity
-          onPress={props.onPressRightIcon}
+          onPress={onPressRightIcon}
           style={styles.iconBackground}>
           <Icon name="search" size={24} />
         </TouchableOpacity>

@@ -12,9 +12,9 @@ interface Props {
 const ProductCard: FC<Props> = props => {
   return (
     <TouchableOpacity
-      activeOpacity={0.6}
       style={styles.container}
-      onPress={props.onPress}>
+      onPress={props.onPress}
+      hitSlop={8}>
       <View style={styles.imageContainer}>
         <Image style={styles.image} source={{uri: props.imageSrc}} />
       </View>
