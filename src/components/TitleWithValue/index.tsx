@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {Text, TextProps, View} from 'react-native';
+import {Dimensions, Text, TextProps, View} from 'react-native';
 import styles from './style';
 
 interface Props extends TextProps {
@@ -8,11 +8,13 @@ interface Props extends TextProps {
 }
 
 const TitleWithValue: FC<Props> = props => {
+  const {width} = Dimensions.get('window');
+
   const {title, value, style} = props;
 
   return (
     <View style={styles.container}>
-      <Text style={[styles.title, style]}>{title}</Text>
+      <Text style={[styles.title, style, {width: width / 1.7}]}>{title}</Text>
       <Text style={[styles.title, style]}>{value}</Text>
     </View>
   );

@@ -1,5 +1,6 @@
 import React, {FC} from 'react';
 import {
+  Dimensions,
   FlatList,
   Image,
   ImageBackground,
@@ -10,22 +11,20 @@ import {
 } from 'react-native';
 import styles from './style';
 import AppBar from '../../components/AppBar';
-import TitleWithValue from '../../components/ProductTitle';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {HomeParams} from '../../@types/navigation';
 import ImagePreview from '../../components/ImagePreview';
 import {formatUSD} from '../../utils/format';
 import {Review} from '../../service/getAllProductsService';
 import ReviewItem from '../../components/ReviewItem';
+import TitleWithValue from '../../components/TitleWithValue';
+import Header from '../../components/Header';
+import Rating from '../../components/Rating';
 
 type Props = NativeStackScreenProps<HomeParams, 'ProductDetails'>;
 
 const ProductDetails: FC<Props> = ({route}) => {
   const {itemProduct} = route.params;
-  const slicedImages = itemProduct?.images?.length
-    ? itemProduct?.images?.slice(0, itemProduct?.images?.length - 1)
-    : [];
-  const diffImages = itemProduct?.images?.length - slicedImages?.length;
 
   return (
     <SafeAreaView style={styles.container}>
@@ -33,27 +32,28 @@ const ProductDetails: FC<Props> = ({route}) => {
         <ImageBackground
           style={styles.mainImage}
           imageStyle={{borderRadius: 20}}
-          source={{uri: itemProduct.images[0]}}>
-          <AppBar />
-        </ImageBackground>
+          source={{uri: itemProduct.images[0]}}></ImageBackground>
         <View style={styles.detailsContainer}>
+          <View style={styles.categoryContainer}>
+            <Text style={styles.smallTitle}>{itemProduct.category}</Text>
+            <Rating rate={itemProduct.rating} />
+          </View>
           <TitleWithValue
             title={itemProduct.title}
             value={formatUSD(itemProduct.price)}
-            style={styles.smallTitle}
-          />
-          <TitleWithValue
-            title={itemProduct.category}
-            value={`${itemProduct.rating.toString()}/5`}
+            style={{fontSize: 22}}
           />
           <ImagePreview
-            images={slicedImages}
-            diffImages={diffImages}
+            images={itemProduct.images}
             onImagePreviewPress={() => console.log()}
           />
-          <Text style={styles.title}>Description</Text>
-          <Text style={styles.description}>{itemProduct.description}</Text>
-          <Text style={styles.title}>Reviews</Text>
+          <Header
+            title="Description"
+            subTitle={itemProduct.description}
+            headingStyle={styles.title}
+            subHeadingStyle={styles.description}
+          />
+          <Text style={[styles.title, {marginTop: 15}]}>Reviews</Text>
           <FlatList
             data={itemProduct.reviews}
             ListEmptyComponent={<Text>No reviews available</Text>}
@@ -61,10 +61,6 @@ const ProductDetails: FC<Props> = ({route}) => {
             showsVerticalScrollIndicator={false}
             keyExtractor={(review: Review) => review.reviewerName}
             renderItem={({item}) => <ReviewItem review={item} />}
-          />
-          <TitleWithValue
-            title="Total Price"
-            value={formatUSD(itemProduct.price)}
           />
         </View>
       </ScrollView>

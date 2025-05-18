@@ -5,17 +5,24 @@ import styles from './style';
 interface Props {
   images: string[];
   onImagePreviewPress(): void;
-  diffImages: number;
+  maxOfCards?: number;
 }
 
-const ImagePreview: FC<Props> = props => {
-  const {images, diffImages, onImagePreviewPress} = props;
+const ImagePreview: FC<Props> = ({
+  images,
+  maxOfCards = 3,
+  onImagePreviewPress,
+}) => {
+  const slicedImages = images?.length
+    ? images?.slice(0, images?.length - 1)
+    : [];
+  const diffImages = slicedImages?.length - maxOfCards;
 
   return (
     <Pressable onPress={() => onImagePreviewPress()} style={styles.footer}>
       {images?.map((image, index) => (
         <View key={image}>
-          {index < 3 ? (
+          {index < maxOfCards ? (
             <Image source={{uri: image}} style={styles.miniImage} />
           ) : null}
           {diffImages > 0 && index === images?.length - 1 ? (

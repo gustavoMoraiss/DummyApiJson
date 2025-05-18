@@ -10,7 +10,6 @@ const styles = StyleSheet.create({
   smallTitle: {
     fontSize: 15,
     color: colors.textGray,
-    marginTop: 15,
     fontFamily: 'Inter_18pt-Black',
   },
   mainImage: {
@@ -23,9 +22,9 @@ const styles = StyleSheet.create({
   },
   detailsContainer: {
     marginHorizontal: 20,
+    marginTop: 10,
   },
   title: {
-    marginTop: 20,
     color: colors.textDark,
     fontSize: 17,
     fontWeight: 'bold',
@@ -34,6 +33,19 @@ const styles = StyleSheet.create({
     marginTop: 10,
     color: colors.textGray,
     fontSize: 15,
+  },
+  categoryContainer: {
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 8,
+  },
+  categoryTitle: {
+    fontSize: 28,
+    marginTop: 8,
+    fontWeight: 'bold',
+    color: colors.textDark,
   },
 });
 
