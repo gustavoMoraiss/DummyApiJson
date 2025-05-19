@@ -1,21 +1,27 @@
 import {StyleSheet} from 'react-native';
+import colors from '../../constants/colors';
 
 const styles = StyleSheet.create({
   item: {
     fontSize: 13,
-    color: 'rgba(0, 0, 0, 0.5)',
-    paddingVertical: 2,
+    textAlign: 'center',
+    color: colors.textDark,
+    justifyContent: 'center',
   },
   selectedItem: {
-    color: '#000000',
+    color: colors.textDark,
   },
   itemContainer: {
-    marginVertical: 14,
     marginRight: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   selectedItemContainer: {
-    borderBottomColor: '#4681A3',
-    borderBottomWidth: 1,
+    padding: 8,
+    backgroundColor: colors.lightGray,
+    width: 94,
+    height: 50,
+    borderRadius: 12,
   },
   flatList: {},
 });

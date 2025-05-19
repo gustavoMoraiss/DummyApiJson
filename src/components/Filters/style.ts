@@ -3,18 +3,19 @@ import colors from '../../constants/colors';
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 20,
+    flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
   },
-  iconBackground: {
-    borderRadius: 24,
+  button: {
+    padding: 8,
     backgroundColor: colors.lightGray,
-    alignContent: 'center',
-    justifyContent: 'center',
-    width: 45,
-    height: 45,
-    alignItems: 'center',
+    paddingVertical: 16,
+    borderRadius: 12,
+    marginLeft: 10,
+  },
+  textButton: {
+    color: colors.textDark,
   },
 });
 
