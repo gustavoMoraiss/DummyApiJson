@@ -47,3 +47,10 @@ git clone https://github.com/your-username/laza-ecommerce-app.git
 cd laza-ecommerce-app
 yarn install
 ```
+
+### Running the App
+
+```bash
+npx react-native run-android
+npx react-native run-ios
+```
