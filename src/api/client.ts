@@ -1,4 +1,3 @@
-import {getFromAsyncStorage, Keys} from '@utils/asyncStorage';
 import axios, {CreateAxiosDefaults} from 'axios';
 
 const baseURL = 'https://dummyjson.com';

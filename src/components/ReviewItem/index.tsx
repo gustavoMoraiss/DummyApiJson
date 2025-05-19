@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {Review} from '../../service/getAllProductsService';
+import {Review} from '../../api/domain/getAllProductsService';
 import {Text, View} from 'react-native';
 import Header from '../Header';
 import styles from './style';
@@ -12,8 +12,8 @@ interface Props {
   review: Review;
 }
 
-const ReviewItem: FC<Props> = props => {
-  const {rating, comment, date, reviewerName} = props.review;
+const ReviewItem: FC<Props> = ({review}) => {
+  const {rating, comment, date, reviewerName} = review;
   return (
     <View style={styles.container}>
       <View style={styles.row}>

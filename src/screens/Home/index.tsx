@@ -2,8 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {FlatList, SafeAreaView, Text, TouchableOpacity} from 'react-native';
 import AppBar from '../../components/AppBar';
 import Header from '../../components/Header';
-import getAllProducts, {Product} from '../../service/getAllProductsService';
-import {getAllCategories} from '../../service/getAllCategories';
+import {getAllCategories} from '../../api/domain/getAllCategories';
 import Categories from '../../components/Categories';
 import ProductCard from '../../components/ProductCard';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
@@ -12,9 +11,8 @@ import {formatUSD} from '../../utils/format';
 import styles from './style';
 import {useProducts} from '../../hooks/query';
 import Loader from '../../components/Loader';
-import {View} from 'react-native-reanimated/lib/typescript/Animated';
-import Icon from '@react-native-vector-icons/ionicons';
 import Filters from '../../components/Filters';
+import {Product} from '../../api/domain/getAllProductsService';
 
 const All = 'All';
 
