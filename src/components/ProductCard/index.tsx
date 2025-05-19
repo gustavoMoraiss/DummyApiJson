@@ -10,17 +10,14 @@ interface Props {
   onPress(): void;
 }
 
-const ProductCard: FC<Props> = props => {
+const ProductCard: FC<Props> = ({onPress, imageSrc, title, price}) => {
   return (
-    <TouchableOpacity
-      style={styles.container}
-      onPress={props.onPress}
-      hitSlop={8}>
+    <TouchableOpacity style={styles.container} onPress={onPress} hitSlop={8}>
       <View style={styles.imageContainer}>
-        <Image style={styles.image} source={{uri: props.imageSrc}} />
+        <Image style={styles.image} source={{uri: imageSrc}} />
       </View>
-      <Text style={styles.description}>{props.title}</Text>
-      <Text style={styles.value}>{props.price}</Text>
+      <Text style={styles.description}>{title}</Text>
+      <Text style={styles.value}>{price}</Text>
     </TouchableOpacity>
   );
 };

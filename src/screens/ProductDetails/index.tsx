@@ -1,8 +1,5 @@
 import React, {FC} from 'react';
 import {
-  Dimensions,
-  FlatList,
-  Image,
   ImageBackground,
   SafeAreaView,
   ScrollView,

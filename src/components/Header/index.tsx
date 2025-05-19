@@ -9,9 +9,12 @@ interface Props {
   subHeadingStyle?: StyleProp<TextStyle>;
 }
 
-const Header: FC<Props> = props => {
-  const {title, subTitle, headingStyle, subHeadingStyle} = props;
-
+const Header: FC<Props> = ({
+  title,
+  subTitle,
+  headingStyle,
+  subHeadingStyle,
+}) => {
   return (
     <View style={styles.container}>
       <Text style={[styles.title, headingStyle]}>{title}</Text>

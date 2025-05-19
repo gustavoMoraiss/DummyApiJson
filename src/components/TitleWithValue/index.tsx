@@ -7,10 +7,8 @@ interface Props extends TextProps {
   value: string;
 }
 
-const TitleWithValue: FC<Props> = props => {
+const TitleWithValue: FC<Props> = ({title, value, style}) => {
   const {width} = Dimensions.get('window');
-
-  const {title, value, style} = props;
 
   return (
     <View style={styles.container}>

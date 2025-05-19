@@ -13,5 +13,8 @@ export const useProducts = () => {
   return useQuery<Product[]>({
     queryKey: ['products'],
     queryFn: fetchProducts,
+    onError(err) {
+      const errorMessage = catchAsyncError(err);
+    },
   });
 };
