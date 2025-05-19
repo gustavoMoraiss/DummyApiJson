@@ -8,18 +8,22 @@ interface Props {
   onCategoryPress(item: string): void;
 }
 
-const Categories: FC<Props> = props => {
+const Categories: FC<Props> = ({
+  categories,
+  selectedCategory,
+  onCategoryPress,
+}) => {
   return (
     <FlatList
       horizontal
       keyExtractor={item => String(item)}
       showsHorizontalScrollIndicator={false}
-      data={props.categories}
+      data={categories}
       renderItem={({item, index}) => {
-        const selected = props.selectedCategory === item;
+        const selected = selectedCategory === item;
         return (
           <TouchableOpacity
-            onPress={() => props.onCategoryPress(item)}
+            onPress={() => onCategoryPress(item)}
             style={[
               styles.itemContainer,
               selected ? styles.selectedItemContainer : {},

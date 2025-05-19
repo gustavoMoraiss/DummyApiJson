@@ -1,6 +1,4 @@
-export type ProductsResponse = {
-  products: Product[];
-};
+import {Review} from './review';
 
 export type Product = {
   id: number;
@@ -13,11 +11,4 @@ export type Product = {
   reviews: Review[];
   stock: number;
   thumbnail: string;
-};
-
-export type Review = {
-  rating: number;
-  comment: string;
-  date: string;
-  reviewerName: string;
 };
