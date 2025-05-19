@@ -54,54 +54,47 @@ const Home = () => {
     );
 
   return (
-    <TryAgain
-      tryAgainText="Error loading products"
-      onTryAgainButtonClick={() => refetch()}
-    />
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        data={productList}
+        ListEmptyComponent={
+          <TouchableOpacity onPress={() => console.log(data)}>
+            <Text>No item found</Text>
+          </TouchableOpacity>
+        }
+        numColumns={2}
+        style={{flexGrow: 1}}
+        showsVerticalScrollIndicator={false}
+        ListHeaderComponent={
+          <>
+            <AppBar />
+            <Header title="Hello" subTitle="Welcome to Modak Interview!" />
+            <Text style={styles.categoryHeading}>Choose Category</Text>
+            <Categories
+              selectedCategory={currentCategory}
+              onCategoryPress={setCurrentCategory}
+              categories={[All, ...getAllCategories]}
+            />
+            <Filters
+              onFilterByPriceClick={sortByPricing}
+              onFilterByRatingClick={sortByRating}
+            />
+          </>
+        }
+        keyExtractor={product => String(product.id)}
+        renderItem={({item}) => (
+          <ProductCard
+            title={item.title}
+            price={formatUSD(item.price)}
+            imageSrc={item.thumbnail}
+            onPress={() => {
+              navigation.navigate('ProductDetails', {itemProduct: item});
+            }}
+          />
+        )}
+      />
+    </SafeAreaView>
   );
-
-  // return (
-  //   <SafeAreaView style={styles.container}>
-  //     <FlatList
-  //       data={productList}
-  //       ListEmptyComponent={
-  //         <TouchableOpacity onPress={() => console.log(data)}>
-  //           <Text>No item found</Text>
-  //         </TouchableOpacity>
-  //       }
-  //       numColumns={2}
-  //       style={{flexGrow: 1}}
-  //       showsVerticalScrollIndicator={false}
-  //       ListHeaderComponent={
-  //         <>
-  //           <AppBar />
-  //           <Header title="Hello" subTitle="Welcome to Modak Interview!" />
-  //           <Text style={styles.categoryHeading}>Choose Category</Text>
-  //           <Categories
-  //             selectedCategory={currentCategory}
-  //             onCategoryPress={setCurrentCategory}
-  //             categories={[All, ...getAllCategories]}
-  //           />
-  //           <Filters
-  //             onFilterByPriceClick={sortByPricing}
-  //             onFilterByRatingClick={sortByRating}
-  //           />
-  //         </>
-  //       }
-  //       keyExtractor={product => String(product.id)}
-  //       renderItem={({item}) => (
-  //         <ProductCard
-  //           title={item.title}
-  //           price={formatUSD(item.price)}
-  //           imageSrc={item.thumbnail}
-  //           onPress={() => {
-  //             navigation.navigate('ProductDetails', {itemProduct: item});
-  //           }}
-  //         />
-  //       )}
-  //     />
-  //   </SafeAreaView>
-  // );
 };
 
 export default React.memo(Home);
