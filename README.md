@@ -1,4 +1,4 @@
-# 🛒 Laza Ecommerce App
+# 🛒 Dummy Api Json App
 
 This is a React Native mobile application developed as part of an interview challenge. The goal of this project is to demonstrate proficiency in building performant and well-structured mobile applications using modern tools and libraries in the React Native ecosystem.
 
@@ -44,6 +44,6 @@ Product data is fetched from the [DummyJSON API](https://dummyjson.com/docs/prod
 
 ```bash
 git clone https://github.com/your-username/laza-ecommerce-app.git
-cd laza-ecommerce-app
+cd DummyApiJson
 yarn install
 ```
