@@ -58,14 +58,9 @@ const ProductDetails: FC<Props> = ({route, navigation}) => {
             subHeadingStyle={styles.description}
           />
           <Text style={[styles.title, {marginTop: 15}]}>Reviews</Text>
-          <FlatList
-            data={reviews}
-            ListEmptyComponent={<Text>No reviews available</Text>}
-            style={{flexGrow: 1}}
-            showsVerticalScrollIndicator={false}
-            keyExtractor={(review: Review) => review.reviewerName}
-            renderItem={({item}) => <ReviewItem review={item} />}
-          />
+          {reviews.map((review, index) => (
+            <ReviewItem review={review} />
+          ))}
         </View>
       </ScrollView>
     </SafeAreaView>

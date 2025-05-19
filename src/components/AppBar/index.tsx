@@ -4,9 +4,7 @@ import styles from './style';
 import Icon from '@react-native-vector-icons/ionicons';
 
 interface Props {
-  leftIconName: string;
-  rightIconName?: string;
-  onPressRightIcon(): void;
+  onPressRightIcon?(): void;
   onPressLeftIcon?(): void;
 }
 

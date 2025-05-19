@@ -2,6 +2,7 @@ import Icon from '@react-native-vector-icons/ionicons';
 import React, {FC} from 'react';
 import {Text, View} from 'react-native';
 import styles from './style';
+import {formatDecimal} from '../../utils/format';
 
 interface Props {
   rate: number;
@@ -16,7 +17,7 @@ const Rating: FC<Props> = ({rate, maxStars = 5}) => {
   return (
     <View style={styles.container}>
       <View style={styles.row}>
-        <Text style={styles.ratingValue}>{rate.toString() + '.0'}</Text>
+        <Text style={styles.ratingValue}>{formatDecimal(rate)}</Text>
         <Text style={styles.ratingDescription}> rating</Text>
       </View>
       <View style={[styles.row, {marginTop: 5}]}>

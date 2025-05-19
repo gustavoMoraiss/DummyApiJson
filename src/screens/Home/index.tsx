@@ -1,5 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, SafeAreaView, Text, View} from 'react-native';
+import {
+  ActivityIndicator,
+  FlatList,
+  SafeAreaView,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import AppBar from '../../components/AppBar';
 import Header from '../../components/Header';
 import getAllProducts, {Product} from '../../service/getAllProductsService';
@@ -10,33 +17,31 @@ import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {HomeParams} from '../../@types/navigation';
 import {formatUSD} from '../../utils/format';
 import styles from './style';
+import {useProducts} from '../../hooks/query';
+import Loader from '../../components/Loader';
 
 interface Props {}
 
 const All = 'All';
 
 const Home = () => {
-  const [data, setData] = useState<Product[]>([]);
   const [currentCategory, setCurrentCategory] = useState<string>(All);
-  const [categories, setCategories] = useState<string[]>([]);
   const navigation = useNavigation<NavigationProp<HomeParams>>();
+  const [productList, setProductList] = useState<Product[]>();
 
-  useEffect(() => {
-    setData(getAllProducts);
-  }, []);
+  const {data, isLoading, error} = useProducts();
+  if (isLoading) return <Loader />;
 
-  useEffect(() => {
-    setCategories(getAllCategories);
-  });
+  if (error) return <Text>Error loading products</Text>;
 
   useEffect(() => {
     if (currentCategory === All) {
-      setData(getAllProducts);
+      setProductList(data);
     } else {
-      const filteredProducts = getAllProducts?.filter(
+      const filteredProducts = data?.filter(
         item => item?.category === currentCategory,
       );
-      setData(filteredProducts);
+      setProductList(filteredProducts);
     }
     console.log(data);
   }, [currentCategory]);
@@ -44,8 +49,12 @@ const Home = () => {
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
-        data={data}
-        ListEmptyComponent={<Text>No item found</Text>}
+        data={productList}
+        ListEmptyComponent={
+          <TouchableOpacity onPress={() => console.log(data)}>
+            <Text>No item found</Text>
+          </TouchableOpacity>
+        }
         numColumns={2}
         style={{flexGrow: 1}}
         showsVerticalScrollIndicator={false}
@@ -56,7 +65,7 @@ const Home = () => {
             <Categories
               selectedCategory={currentCategory}
               onCategoryPress={item => setCurrentCategory(item)}
-              categories={[All, ...categories]}
+              categories={[All, ...getAllCategories]}
             />
           </>
         }
@@ -75,5 +84,4 @@ const Home = () => {
     </SafeAreaView>
   );
 };
-
 export default React.memo(Home);
