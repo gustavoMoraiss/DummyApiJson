@@ -12,12 +12,13 @@ import styles from './style';
 import {useProducts} from '../../hooks/query';
 import Loader from '../../components/Loader';
 import Filters from '../../components/Filters';
-import {Product} from '../../api/domain/getAllProductsService';
+import {Product} from '../../api/domain/product';
+import TryAgain from '../../components/TryAgain';
 
 const All = 'All';
 
 const Home = () => {
-  const {data = [], isLoading, error} = useProducts();
+  const {data = [], isLoading, error, refetch, isFetching} = useProducts();
 
   const [currentCategory, setCurrentCategory] = useState<string>(All);
   const [productList, setProductList] = useState<Product[]>(data);
@@ -43,51 +44,64 @@ const Home = () => {
     setProductList(sorted);
   };
 
-  if (isLoading) return <Loader />;
-  if (error) return <Text>Error loading products</Text>;
+  if (isLoading || isFetching) return <Loader />;
+  if (error)
+    return (
+      <TryAgain
+        tryAgainText="Error loading products"
+        onTryAgainButtonClick={() => refetch()}
+      />
+    );
 
   return (
-    <SafeAreaView style={styles.container}>
-      <FlatList
-        data={productList}
-        ListEmptyComponent={
-          <TouchableOpacity onPress={() => console.log(data)}>
-            <Text>No item found</Text>
-          </TouchableOpacity>
-        }
-        numColumns={2}
-        style={{flexGrow: 1}}
-        showsVerticalScrollIndicator={false}
-        ListHeaderComponent={
-          <>
-            <AppBar />
-            <Header title="Hello" subTitle="Welcome to Modak Interview!" />
-            <Text style={styles.categoryHeading}>Choose Category</Text>
-            <Categories
-              selectedCategory={currentCategory}
-              onCategoryPress={setCurrentCategory}
-              categories={[All, ...getAllCategories]}
-            />
-            <Filters
-              onFilterByPriceClick={sortByPricing}
-              onFilterByRatingClick={sortByRating}
-            />
-          </>
-        }
-        keyExtractor={product => String(product.id)}
-        renderItem={({item}) => (
-          <ProductCard
-            title={item.title}
-            price={formatUSD(item.price)}
-            imageSrc={item.thumbnail}
-            onPress={() => {
-              navigation.navigate('ProductDetails', {itemProduct: item});
-            }}
-          />
-        )}
-      />
-    </SafeAreaView>
+    <TryAgain
+      tryAgainText="Error loading products"
+      onTryAgainButtonClick={() => refetch()}
+    />
   );
+
+  // return (
+  //   <SafeAreaView style={styles.container}>
+  //     <FlatList
+  //       data={productList}
+  //       ListEmptyComponent={
+  //         <TouchableOpacity onPress={() => console.log(data)}>
+  //           <Text>No item found</Text>
+  //         </TouchableOpacity>
+  //       }
+  //       numColumns={2}
+  //       style={{flexGrow: 1}}
+  //       showsVerticalScrollIndicator={false}
+  //       ListHeaderComponent={
+  //         <>
+  //           <AppBar />
+  //           <Header title="Hello" subTitle="Welcome to Modak Interview!" />
+  //           <Text style={styles.categoryHeading}>Choose Category</Text>
+  //           <Categories
+  //             selectedCategory={currentCategory}
+  //             onCategoryPress={setCurrentCategory}
+  //             categories={[All, ...getAllCategories]}
+  //           />
+  //           <Filters
+  //             onFilterByPriceClick={sortByPricing}
+  //             onFilterByRatingClick={sortByRating}
+  //           />
+  //         </>
+  //       }
+  //       keyExtractor={product => String(product.id)}
+  //       renderItem={({item}) => (
+  //         <ProductCard
+  //           title={item.title}
+  //           price={formatUSD(item.price)}
+  //           imageSrc={item.thumbnail}
+  //           onPress={() => {
+  //             navigation.navigate('ProductDetails', {itemProduct: item});
+  //           }}
+  //         />
+  //       )}
+  //     />
+  //   </SafeAreaView>
+  // );
 };
 
 export default React.memo(Home);
