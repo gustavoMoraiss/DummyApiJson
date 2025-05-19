@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {FlatList, Text, Touchable, TouchableOpacity} from 'react-native';
+import {FlatList, Text, TouchableOpacity} from 'react-native';
 import styles from './style';
 
 interface Props {
