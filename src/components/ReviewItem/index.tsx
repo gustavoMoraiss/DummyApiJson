@@ -1,5 +1,4 @@
 import React, {FC} from 'react';
-import {Review} from '../../api/domain/getAllProductsService';
 import {Text, View} from 'react-native';
 import Header from '../Header';
 import styles from './style';
@@ -7,6 +6,7 @@ import {formatDateToReadable} from '../../utils/format';
 import Rating from '../Rating';
 import Icon from '@react-native-vector-icons/ionicons';
 import colors from '../../constants/colors';
+import {Review} from '../../api/domain/review';
 
 interface Props {
   review: Review;

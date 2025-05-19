@@ -12,12 +12,13 @@ import styles from './style';
 import {useProducts} from '../../hooks/query';
 import Loader from '../../components/Loader';
 import Filters from '../../components/Filters';
-import {Product} from '../../api/domain/getAllProductsService';
+import {Product} from '../../api/domain/product';
+import TryAgain from '../../components/TryAgain';
 
 const All = 'All';
 
 const Home = () => {
-  const {data = [], isLoading, error} = useProducts();
+  const {data = [], isLoading, error, refetch, isFetching} = useProducts();
 
   const [currentCategory, setCurrentCategory] = useState<string>(All);
   const [productList, setProductList] = useState<Product[]>(data);
@@ -43,8 +44,14 @@ const Home = () => {
     setProductList(sorted);
   };
 
-  if (isLoading) return <Loader />;
-  if (error) return <Text>Error loading products</Text>;
+  if (isLoading || isFetching) return <Loader />;
+  if (error)
+    return (
+      <TryAgain
+        tryAgainText="Error loading products"
+        onTryAgainButtonClick={() => refetch()}
+      />
+    );
 
   return (
     <SafeAreaView style={styles.container}>
