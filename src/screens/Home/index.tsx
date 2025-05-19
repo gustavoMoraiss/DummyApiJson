@@ -1,12 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {
-  ActivityIndicator,
-  FlatList,
-  SafeAreaView,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {FlatList, SafeAreaView, Text, TouchableOpacity} from 'react-native';
 import AppBar from '../../components/AppBar';
 import Header from '../../components/Header';
 import getAllProducts, {Product} from '../../service/getAllProductsService';
@@ -19,32 +12,41 @@ import {formatUSD} from '../../utils/format';
 import styles from './style';
 import {useProducts} from '../../hooks/query';
 import Loader from '../../components/Loader';
-
-interface Props {}
+import {View} from 'react-native-reanimated/lib/typescript/Animated';
+import Icon from '@react-native-vector-icons/ionicons';
+import Filters from '../../components/Filters';
 
 const All = 'All';
 
 const Home = () => {
+  const {data = [], isLoading, error} = useProducts();
+
   const [currentCategory, setCurrentCategory] = useState<string>(All);
+  const [productList, setProductList] = useState<Product[]>(data);
+
   const navigation = useNavigation<NavigationProp<HomeParams>>();
-  const [productList, setProductList] = useState<Product[]>();
-
-  const {data, isLoading, error} = useProducts();
-  if (isLoading) return <Loader />;
-
-  if (error) return <Text>Error loading products</Text>;
 
   useEffect(() => {
     if (currentCategory === All) {
       setProductList(data);
     } else {
-      const filteredProducts = data?.filter(
-        item => item?.category === currentCategory,
-      );
-      setProductList(filteredProducts);
+      const filtered = data.filter(item => item.category === currentCategory);
+      setProductList(filtered);
     }
-    console.log(data);
-  }, [currentCategory]);
+  }, [currentCategory, data]);
+
+  const sortByPricing = () => {
+    const sorted = [...productList].sort((a, b) => b.price - a.price);
+    setProductList(sorted);
+  };
+
+  const sortByRating = () => {
+    const sorted = [...productList].sort((a, b) => b.rating - a.rating);
+    setProductList(sorted);
+  };
+
+  if (isLoading) return <Loader />;
+  if (error) return <Text>Error loading products</Text>;
 
   return (
     <SafeAreaView style={styles.container}>
@@ -61,20 +63,25 @@ const Home = () => {
         ListHeaderComponent={
           <>
             <AppBar />
-            <Header title="Hello" subTitle="Welcome Modak Interview!" />
+            <Header title="Hello" subTitle="Welcome to Modak Interview!" />
+            <Text style={styles.categoryHeading}>Choose Category</Text>
             <Categories
               selectedCategory={currentCategory}
-              onCategoryPress={item => setCurrentCategory(item)}
+              onCategoryPress={setCurrentCategory}
               categories={[All, ...getAllCategories]}
+            />
+            <Filters
+              onFilterByPriceClick={sortByPricing}
+              onFilterByRatingClick={sortByRating}
             />
           </>
         }
-        keyExtractor={product => String(product?.id)}
+        keyExtractor={product => String(product.id)}
         renderItem={({item}) => (
           <ProductCard
             title={item.title}
             price={formatUSD(item.price)}
-            imageSrc={item.images[0]}
+            imageSrc={item.thumbnail}
             onPress={() => {
               navigation.navigate('ProductDetails', {itemProduct: item});
             }}
@@ -84,4 +91,5 @@ const Home = () => {
     </SafeAreaView>
   );
 };
+
 export default React.memo(Home);

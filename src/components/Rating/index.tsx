@@ -1,8 +1,8 @@
-import Icon from '@react-native-vector-icons/ionicons';
 import React, {FC} from 'react';
 import {Text, View} from 'react-native';
 import styles from './style';
 import {formatDecimal} from '../../utils/format';
+import Icon from '@react-native-vector-icons/ionicons';
 
 interface Props {
   rate: number;
@@ -22,11 +22,18 @@ const Rating: FC<Props> = ({rate, maxStars = 5}) => {
       </View>
       <View style={[styles.row, {marginTop: 5}]}>
         {[...Array(fullStars)].map((_, i) => (
-          <Icon name="star" size={13} color="#FF981F" />
+          <Icon key={`full-${i}`} name="star" size={13} color="#FF981F" />
         ))}
-        {hasHalfStar && <Icon name="star-half-outline" size={13} />}
+        {hasHalfStar && (
+          <Icon key="half" name="star-half-outline" size={13} color="#FF981F" />
+        )}
         {[...Array(emptyStars)].map((_, i) => (
-          <Icon name="star-outline" size={13} />
+          <Icon
+            key={`empty-${i}`}
+            name="star-outline"
+            size={13}
+            color="#FF981F"
+          />
         ))}
       </View>
     </View>

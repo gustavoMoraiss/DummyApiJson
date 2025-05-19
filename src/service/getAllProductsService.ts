@@ -11,6 +11,8 @@ export type Product = {
   images: string[];
   description: string;
   reviews: Review[];
+  stock: number;
+  thumbnail: string;
 };
 
 export type Review = {

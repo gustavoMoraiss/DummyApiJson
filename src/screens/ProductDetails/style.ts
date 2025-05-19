@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
   smallTitle: {
     fontSize: 15,
     color: colors.textGray,
-    fontFamily: 'Inter_18pt-Black',
   },
   mainImage: {
     width: '100%',
