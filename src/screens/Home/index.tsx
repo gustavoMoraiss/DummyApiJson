@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, SafeAreaView, Text, View} from 'react-native';
+import {FlatList, SafeAreaView, Text, TouchableOpacity} from 'react-native';
 import AppBar from '../../components/AppBar';
 import Header from '../../components/Header';
 import getAllProducts, {Product} from '../../service/getAllProductsService';
@@ -10,62 +10,78 @@ import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {HomeParams} from '../../@types/navigation';
 import {formatUSD} from '../../utils/format';
 import styles from './style';
-
-interface Props {}
+import {useProducts} from '../../hooks/query';
+import Loader from '../../components/Loader';
+import {View} from 'react-native-reanimated/lib/typescript/Animated';
+import Icon from '@react-native-vector-icons/ionicons';
+import Filters from '../../components/Filters';
 
 const All = 'All';
 
 const Home = () => {
-  const [data, setData] = useState<Product[]>([]);
+  const {data = [], isLoading, error} = useProducts();
+
   const [currentCategory, setCurrentCategory] = useState<string>(All);
-  const [categories, setCategories] = useState<string[]>([]);
+  const [productList, setProductList] = useState<Product[]>(data);
+
   const navigation = useNavigation<NavigationProp<HomeParams>>();
 
   useEffect(() => {
-    setData(getAllProducts);
-  }, []);
-
-  useEffect(() => {
-    setCategories(getAllCategories);
-  });
-
-  useEffect(() => {
     if (currentCategory === All) {
-      setData(getAllProducts);
+      setProductList(data);
     } else {
-      const filteredProducts = getAllProducts?.filter(
-        item => item?.category === currentCategory,
-      );
-      setData(filteredProducts);
+      const filtered = data.filter(item => item.category === currentCategory);
+      setProductList(filtered);
     }
-    console.log(data);
-  }, [currentCategory]);
+  }, [currentCategory, data]);
+
+  const sortByPricing = () => {
+    const sorted = [...productList].sort((a, b) => b.price - a.price);
+    setProductList(sorted);
+  };
+
+  const sortByRating = () => {
+    const sorted = [...productList].sort((a, b) => b.rating - a.rating);
+    setProductList(sorted);
+  };
+
+  if (isLoading) return <Loader />;
+  if (error) return <Text>Error loading products</Text>;
 
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
-        data={data}
-        ListEmptyComponent={<Text>No item found</Text>}
+        data={productList}
+        ListEmptyComponent={
+          <TouchableOpacity onPress={() => console.log(data)}>
+            <Text>No item found</Text>
+          </TouchableOpacity>
+        }
         numColumns={2}
         style={{flexGrow: 1}}
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={
           <>
             <AppBar />
-            <Header title="Hello" subTitle="Welcome Modak Interview!" />
+            <Header title="Hello" subTitle="Welcome to Modak Interview!" />
+            <Text style={styles.categoryHeading}>Choose Category</Text>
             <Categories
               selectedCategory={currentCategory}
-              onCategoryPress={item => setCurrentCategory(item)}
-              categories={[All, ...categories]}
+              onCategoryPress={setCurrentCategory}
+              categories={[All, ...getAllCategories]}
+            />
+            <Filters
+              onFilterByPriceClick={sortByPricing}
+              onFilterByRatingClick={sortByRating}
             />
           </>
         }
-        keyExtractor={product => String(product?.id)}
+        keyExtractor={product => String(product.id)}
         renderItem={({item}) => (
           <ProductCard
             title={item.title}
             price={formatUSD(item.price)}
-            imageSrc={item.images[0]}
+            imageSrc={item.thumbnail}
             onPress={() => {
               navigation.navigate('ProductDetails', {itemProduct: item});
             }}

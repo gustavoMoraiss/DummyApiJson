@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
     color: colors.textDark,
   },
   itemContainer: {
-    marginVertical: 14,
     marginRight: 12,
     alignItems: 'center',
     justifyContent: 'center',
