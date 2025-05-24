@@ -16,12 +16,18 @@ import TitleWithValue from '../../components/TitleWithValue';
 import Header from '../../components/Header';
 import Rating from '../../components/Rating';
 import BackButton from '../../components/BackButton';
+import Button from '../../components/Button';
+import CalendarModule from '../../modules/CalendarModule';
 
 type Props = NativeStackScreenProps<HomeParams, 'ProductDetails'>;
 
 const ProductDetails: FC<Props> = ({route, navigation}) => {
   const {images, category, rating, price, title, description, reviews, stock} =
     route.params.itemProduct;
+
+  const makeNewSchedule = () => {
+    CalendarModule.createCalendarEvent('testName', 'testLocation');
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -61,6 +67,11 @@ const ProductDetails: FC<Props> = ({route, navigation}) => {
           {reviews.map((review, index) => (
             <ReviewItem review={review} />
           ))}
+          <Button
+            style={{marginTop: 24}}
+            title="Schedule this Buy"
+            onPress={makeNewSchedule}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>
