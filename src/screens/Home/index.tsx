@@ -68,7 +68,7 @@ const Home = () => {
         ListHeaderComponent={
           <>
             <AppBar />
-            <Header title="Hello" subTitle="Welcome to Modak Interview!" />
+            <Header title="Hello" subTitle="Welcome to Laza." />
             <Text style={styles.categoryHeading}>Choose Category</Text>
             <Categories
               selectedCategory={currentCategory}

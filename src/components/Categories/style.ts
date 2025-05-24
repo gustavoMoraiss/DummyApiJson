@@ -3,13 +3,16 @@ import colors from '../../constants/colors';
 
 const styles = StyleSheet.create({
   item: {
-    fontSize: 13,
+    fontSize: 15,
     textAlign: 'center',
     color: colors.textDark,
     justifyContent: 'center',
+    fontFamily: 'inter_medium',
   },
   selectedItem: {
     color: colors.textDark,
+    fontFamily: 'inter_medium',
+    fontSize: 15,
   },
   itemContainer: {
     marginRight: 12,

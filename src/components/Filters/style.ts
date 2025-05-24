@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-end',
+    marginTop: 18,
   },
   button: {
     padding: 8,
@@ -16,6 +17,8 @@ const styles = StyleSheet.create({
   },
   textButton: {
     color: colors.textDark,
+    fontFamily: 'inter_medium',
+    fontSize: 15,
   },
 });
 
