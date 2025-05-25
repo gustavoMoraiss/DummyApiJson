@@ -38,20 +38,19 @@ const ProductDetails: FC<Props> = ({route, navigation}) => {
   } = route.params.itemProduct;
 
   const handleCreateEvent = async () => {
-    try {
-      const eventId = await createCalendarEvent({
-        title: 'Reunião Importante',
-        description: 'Discussão sobre roadmap',
-        location: 'Google Meet',
-        startDate: '2025-06-01T14:00:00.000Z',
-        endDate: '2025-06-01T15:00:00.000Z',
-      });
-
-      console.log('Evento criado com ID:', eventId);
-      Alert.alert('Evento criado', `ID do evento: ${eventId}`);
-    } catch (error: any) {
-      Alert.alert('Erro', error.message || 'Erro ao criar evento');
-    }
+    // try {
+    //   const eventId = await createCalendarEvent({
+    //     title: 'Reunião Importante',
+    //     description: 'Discussão sobre roadmap',
+    //     location: 'Google Meet',
+    //     startDate: '2025-06-01T14:00:00.000Z',
+    //     endDate: '2025-06-01T15:00:00.000Z',
+    //   });
+    //   console.log('Evento criado com ID:', eventId);
+    //   Alert.alert('Evento criado', `ID do evento: ${eventId}`);
+    // } catch (error: any) {
+    //   Alert.alert('Erro', error.message || 'Erro ao criar evento');
+    // }
   };
 
   return (
