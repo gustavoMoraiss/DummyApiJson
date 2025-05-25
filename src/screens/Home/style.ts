@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     color: colors.textDark,
     fontSize: 17,
-    fontWeight: 'bold',
+    fontFamily: 'inter_medium',
   },
   iconBackground: {
     borderRadius: 24,

@@ -17,15 +17,14 @@ const styles = StyleSheet.create({
     fontSize: 11,
     marginTop: 5,
     textAlign: 'left',
-    fontFamily: 'Inter_18pt-Black',
+    fontFamily: 'inter_medium',
   },
   value: {
     color: colors.textDark,
-    fontWeight: 'bold',
     fontSize: 13,
     marginTop: 5,
     textAlign: 'left',
-    fontFamily: 'Inter_18pt-Black',
+    fontFamily: 'Inter_semi_bold',
   },
   image: {
     width: '100%',
