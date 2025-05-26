@@ -1,10 +1,11 @@
 import {StyleSheet} from 'react-native';
 import colors from '../../constants/colors';
+import {createStyleSheet} from 'react-native-unistyles';
 
-const styles = StyleSheet.create({
+const stylesheet = createStyleSheet(theme => ({
   iconBackground: {
     borderRadius: 24,
-    backgroundColor: colors.lightGray,
+    backgroundColor: theme.colors.shape,
     alignContent: 'center',
     justifyContent: 'center',
     width: 45,
@@ -13,6 +14,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 45,
   },
-});
+}));
 
-export default styles;
+export default stylesheet;

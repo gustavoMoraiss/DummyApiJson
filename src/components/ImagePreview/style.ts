@@ -1,9 +1,8 @@
 import {Dimensions, StyleSheet} from 'react-native';
 import colors from '../../constants/colors';
+import {createStyleSheet} from 'react-native-unistyles';
 
-const {height} = Dimensions.get('window');
-
-const styles = StyleSheet.create({
+const stylesheet = createStyleSheet(theme => ({
   footer: {
     borderRadius: 15,
     marginTop: 20,
@@ -20,7 +19,7 @@ const styles = StyleSheet.create({
     marginRight: 9,
   },
   moreImagesContainer: {
-    backgroundColor: colors.textGray,
+    backgroundColor: theme.colors.text,
     width: 77,
     height: 77,
     borderRadius: 10,
@@ -28,10 +27,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   moreImages: {
-    color: '#fff',
-    fontWeight: 'bold',
-    fontSize: 20,
+    color: theme.colors.primary,
+    fontFamily: theme.fonts.primary.bold,
+    fontSize: theme.fonts.sizes.xxl,
   },
-});
+}));
 
-export default styles;
+export default stylesheet;

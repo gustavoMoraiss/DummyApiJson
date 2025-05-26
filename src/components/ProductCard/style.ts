@@ -1,36 +1,36 @@
-import {Dimensions, StyleSheet} from 'react-native';
-import colors from '../../constants/colors';
+import {Dimensions} from 'react-native';
+import {createStyleSheet} from 'react-native-unistyles';
 
 const {width} = Dimensions.get('window');
 
-const styles = StyleSheet.create({
+const stylesheet = createStyleSheet(theme => ({
   container: {
     width: width * 0.4,
     margin: 15,
   },
   imageContainer: {
     borderRadius: 15,
-    backgroundColor: colors.lightGray,
+    backgroundColor: theme.colors.shape,
   },
   description: {
-    color: colors.textDark,
-    fontSize: 11,
+    color: theme.colors.primary,
+    fontSize: theme.fonts.sizes.xxs,
     marginTop: 5,
     textAlign: 'left',
-    fontFamily: 'inter_medium',
+    fontFamily: theme.fonts.primary.medium,
   },
   value: {
-    color: colors.textDark,
-    fontSize: 13,
+    color: theme.colors.primary,
+    fontSize: theme.fonts.sizes.xs,
     marginTop: 5,
     textAlign: 'left',
-    fontFamily: 'Inter_semi_bold',
+    fontFamily: theme.fonts.primary.semi_bold,
   },
   image: {
     width: '100%',
     height: 293,
     borderRadius: 15,
   },
-});
+}));
 
-export default styles;
+export default stylesheet;

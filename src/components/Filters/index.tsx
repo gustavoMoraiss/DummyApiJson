@@ -1,6 +1,8 @@
 import React, {FC} from 'react';
 import {Button, Text, TouchableOpacity, View} from 'react-native';
 import styles from './style';
+import {useStyles} from 'react-native-unistyles';
+import stylhesheet from './style';
 
 interface Props {
   onFilterByRatingClick(): void;
@@ -8,6 +10,7 @@ interface Props {
 }
 
 const Filters: FC<Props> = ({onFilterByPriceClick, onFilterByRatingClick}) => {
+  const {styles} = useStyles(stylhesheet);
   return (
     <View style={styles.container}>
       <TouchableOpacity

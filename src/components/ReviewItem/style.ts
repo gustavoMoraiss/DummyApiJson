@@ -1,18 +1,18 @@
-import {StyleSheet} from 'react-native';
 import colors from '../../constants/colors';
+import {createStyleSheet} from 'react-native-unistyles';
 
-const styles = StyleSheet.create({
+const stylesheet = createStyleSheet(theme => ({
   container: {
     marginTop: 15,
   },
   heading: {
-    color: colors.textDark,
-    fontSize: 15,
+    color: theme.colors.primary,
+    fontSize: theme.fonts.sizes.sm,
     alignItems: 'flex-start',
   },
   subHeading: {
-    color: colors.textGray,
-    fontSize: 11,
+    color: theme.colors.text,
+    fontSize: theme.fonts.sizes.xxs,
     alignItems: 'flex-start',
     marginTop: 7,
   },
@@ -29,6 +29,6 @@ const styles = StyleSheet.create({
     gap: 8,
     marginTop: 7,
   },
-});
+}));
 
-export default styles;
+export default stylesheet;

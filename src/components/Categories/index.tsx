@@ -1,6 +1,8 @@
 import React, {FC} from 'react';
 import {FlatList, Text, TouchableOpacity} from 'react-native';
 import styles from './style';
+import {useStyles} from 'react-native-unistyles';
+import stylesheet from './style';
 
 interface Props {
   categories: string[];
@@ -13,6 +15,7 @@ const Categories: FC<Props> = ({
   selectedCategory,
   onCategoryPress,
 }) => {
+  const {styles} = useStyles(stylesheet);
   return (
     <FlatList
       horizontal

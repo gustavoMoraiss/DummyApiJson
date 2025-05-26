@@ -1,6 +1,8 @@
 import React, {FC} from 'react';
 import {Image, Pressable, Text, View} from 'react-native';
 import styles from './style';
+import {useStyles} from 'react-native-unistyles';
+import stylesheet from './style';
 
 interface Props {
   images: string[];
@@ -17,6 +19,8 @@ const ImagePreview: FC<Props> = ({
     ? images?.slice(0, images?.length - 1)
     : [];
   const diffImages = slicedImages?.length - maxOfCards;
+
+  const {styles} = useStyles(stylesheet);
 
   return (
     <Pressable onPress={() => onImagePreviewPress()} style={styles.footer}>

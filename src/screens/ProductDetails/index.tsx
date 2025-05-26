@@ -21,6 +21,8 @@ import CalendarModule, {
   createCalendarEvent,
 } from '../../modules/CalendarModule';
 import {Alert} from 'react-native';
+import {useStyles} from 'react-native-unistyles';
+import stylesheet from './style';
 
 type Props = NativeStackScreenProps<HomeParams, 'ProductDetails'>;
 
@@ -53,6 +55,8 @@ const ProductDetails: FC<Props> = ({route, navigation}) => {
     // }
   };
 
+  const {styles} = useStyles(stylesheet);
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -65,7 +69,7 @@ const ProductDetails: FC<Props> = ({route, navigation}) => {
         <View style={styles.detailsContainer}>
           <TitleWithValue
             title="stock availability."
-            value={stock.toString()}
+            value={`${stock.toString()} items`}
             style={styles.smallTitle}
           />
           <View style={styles.categoryContainer}>

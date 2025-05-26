@@ -9,12 +9,10 @@ import Animated, {
 import colors from '../../constants/colors';
 import {View} from 'react-native';
 import styles from './style';
+import {useStyles} from 'react-native-unistyles';
+import stylesheet from './style';
 
-interface Props {
-  color?: string;
-}
-
-const Loader: FC<Props> = ({color = colors.textDark}) => {
+const Loader = () => {
   const initialRotation = useSharedValue(0);
 
   const transform = useAnimatedStyle(() => {
@@ -27,12 +25,16 @@ const Loader: FC<Props> = ({color = colors.textDark}) => {
     initialRotation.value = withRepeat(withTiming(360), -1);
   });
 
+  const {styles, theme} = useStyles(stylesheet);
+
   return (
-    <Animated.View style={transform}>
-      <View style={styles.container}>
-        <Icon name="unlink-outline" size={48} color={color} />
-      </View>
-    </Animated.View>
+    <View>
+      <Animated.View style={transform}>
+        <View style={styles.container}>
+          <Icon name="unlink-outline" size={48} color={theme.colors.primary} />
+        </View>
+      </Animated.View>
+    </View>
   );
 };
 
