@@ -7,12 +7,15 @@ import Rating from '../Rating';
 import Icon from '@react-native-vector-icons/ionicons';
 import colors from '../../constants/colors';
 import {Review} from '../../api/domain/review';
+import {useStyles} from 'react-native-unistyles';
+import stylesheet from './style';
 
 interface Props {
   review: Review;
 }
 
 const ReviewItem: FC<Props> = ({review}) => {
+  const {styles} = useStyles(stylesheet);
   const {rating, comment, date, reviewerName} = review;
   return (
     <View style={styles.container}>

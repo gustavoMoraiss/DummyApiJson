@@ -1,26 +1,22 @@
-import {StyleSheet} from 'react-native';
-import colors from '../../constants/colors';
+import {createStyleSheet} from 'react-native-unistyles';
 
-const styles = StyleSheet.create({
-  container: {
-    padding: 0,
-  },
+const stylesheet = createStyleSheet(theme => ({
   row: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
   ratingValue: {
-    color: colors.textDark,
-    fontSize: 15,
-    fontWeight: 'bold',
+    color: theme.colors.primary,
+    fontSize: theme.fonts.sizes.sm,
+    fontFamily: theme.fonts.primary.bold,
   },
   ratingDescription: {
-    color: colors.textGray,
-    fontSize: 11,
+    color: theme.colors.text,
+    fontSize: theme.fonts.sizes.xxs,
     alignContent: 'center',
     alignItems: 'center',
   },
-});
+}));
 
-export default styles;
+export default stylesheet;

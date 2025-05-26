@@ -1,4 +1,7 @@
 {
   "name": "DummyProjectApi",
-  "displayName": "DummyProjectApi"
+  "displayName": "DummyProjectApi",
+  "experiments": {
+    "tsconfigPaths": true
+  }
 }

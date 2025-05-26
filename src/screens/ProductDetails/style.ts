@@ -1,16 +1,17 @@
 import {Dimensions, StyleSheet} from 'react-native';
-import colors from '../../constants/colors';
+import {createStyleSheet} from 'react-native-unistyles';
 
 const {height} = Dimensions.get('window');
 
-const styles = StyleSheet.create({
+const stylesheet = createStyleSheet(theme => ({
   container: {
     flex: 1,
     paddingBottom: 30,
+    backgroundColor: theme.colors.background,
   },
   smallTitle: {
-    fontSize: 15,
-    color: colors.textGray,
+    fontSize: theme.fonts.sizes.sm,
+    color: theme.colors.text,
   },
   mainImage: {
     width: '100%',
@@ -19,20 +20,21 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
+    backgroundColor: theme.colors.shape,
   },
   detailsContainer: {
     marginHorizontal: 20,
     marginTop: 10,
   },
   title: {
-    color: colors.textDark,
-    fontSize: 17,
-    fontWeight: 'bold',
+    color: theme.colors.primary,
+    fontSize: theme.fonts.sizes.base,
+    fontFamily: theme.fonts.primary.bold,
   },
   description: {
     marginTop: 10,
-    color: colors.textGray,
-    fontSize: 15,
+    color: theme.colors.text,
+    fontSize: theme.fonts.sizes.sm,
   },
   categoryContainer: {
     flexDirection: 'row',
@@ -42,11 +44,11 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   categoryTitle: {
-    fontSize: 28,
+    fontSize: theme.fonts.sizes.xxl,
     marginTop: 8,
-    fontWeight: 'bold',
-    color: colors.textDark,
+    fontFamily: theme.fonts.primary.bold,
+    color: theme.colors.primary,
   },
-});
+}));
 
-export default styles;
+export default stylesheet;

@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
 import {Dimensions, Text, TextProps, View} from 'react-native';
-import styles from './style';
+import {useStyles} from 'react-native-unistyles';
+import stylesheet from './style';
 
 interface Props extends TextProps {
   title: string;
@@ -8,6 +9,7 @@ interface Props extends TextProps {
 }
 
 const TitleWithValue: FC<Props> = ({title, value, style}) => {
+  const {styles} = useStyles(stylesheet);
   const {width} = Dimensions.get('window');
 
   return (

@@ -1,18 +1,19 @@
 import {StyleSheet} from 'react-native';
 import colors from '../../constants/colors';
+import {createStyleSheet} from 'react-native-unistyles';
 
-const styles = StyleSheet.create({
+const stylesheet = createStyleSheet(theme => ({
   container: {
     justifyContent: 'space-between',
     alignItems: 'baseline',
     flexDirection: 'row',
   },
   title: {
-    fontSize: 28,
+    fontSize: theme.fonts.sizes.xxl,
     marginTop: 8,
-    fontWeight: 'bold',
-    color: colors.textDark,
+    fontFamily: theme.fonts.primary.bold,
+    color: theme.colors.primary,
   },
-});
+}));
 
-export default styles;
+export default stylesheet;

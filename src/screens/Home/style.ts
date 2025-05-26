@@ -1,26 +1,27 @@
-import {StyleSheet} from 'react-native';
 import colors from '../../constants/colors';
+import {createStyleSheet} from 'react-native-unistyles';
 
-const styles = StyleSheet.create({
+const stylesheet = createStyleSheet(theme => ({
   container: {
     padding: 20,
+    backgroundColor: theme.colors.background,
   },
   categoryHeading: {
     marginTop: 20,
     marginBottom: 15,
-    color: colors.textDark,
-    fontSize: 17,
-    fontWeight: 'bold',
+    color: theme.colors.primary,
+    fontSize: theme.fonts.sizes.base,
+    fontFamily: theme.fonts.primary.medium,
   },
   iconBackground: {
     borderRadius: 24,
-    backgroundColor: colors.lightGray,
+    backgroundColor: theme.colors.background,
     alignContent: 'center',
     justifyContent: 'center',
     width: 45,
     height: 45,
     alignItems: 'center',
   },
-});
+}));
 
-export default styles;
+export default stylesheet;

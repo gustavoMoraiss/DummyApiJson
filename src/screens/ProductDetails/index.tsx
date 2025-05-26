@@ -16,12 +16,46 @@ import TitleWithValue from '../../components/TitleWithValue';
 import Header from '../../components/Header';
 import Rating from '../../components/Rating';
 import BackButton from '../../components/BackButton';
+import Button from '../../components/Button';
+import CalendarModule, {
+  createCalendarEvent,
+} from '../../modules/CalendarModule';
+import {Alert} from 'react-native';
+import {useStyles} from 'react-native-unistyles';
+import stylesheet from './style';
 
 type Props = NativeStackScreenProps<HomeParams, 'ProductDetails'>;
 
 const ProductDetails: FC<Props> = ({route, navigation}) => {
-  const {images, category, rating, price, title, description, reviews, stock} =
-    route.params.itemProduct;
+  const {
+    images,
+    category,
+    rating,
+    price,
+    title,
+    description,
+    reviews,
+    stock,
+    thumbnail,
+  } = route.params.itemProduct;
+
+  const handleCreateEvent = async () => {
+    // try {
+    //   const eventId = await createCalendarEvent({
+    //     title: 'Reunião Importante',
+    //     description: 'Discussão sobre roadmap',
+    //     location: 'Google Meet',
+    //     startDate: '2025-06-01T14:00:00.000Z',
+    //     endDate: '2025-06-01T15:00:00.000Z',
+    //   });
+    //   console.log('Evento criado com ID:', eventId);
+    //   Alert.alert('Evento criado', `ID do evento: ${eventId}`);
+    // } catch (error: any) {
+    //   Alert.alert('Erro', error.message || 'Erro ao criar evento');
+    // }
+  };
+
+  const {styles} = useStyles(stylesheet);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -29,13 +63,13 @@ const ProductDetails: FC<Props> = ({route, navigation}) => {
         <ImageBackground
           style={styles.mainImage}
           imageStyle={{borderRadius: 20}}
-          source={{uri: images[0]}}>
+          source={{uri: thumbnail}}>
           <BackButton onPress={() => navigation.goBack()} />
         </ImageBackground>
         <View style={styles.detailsContainer}>
           <TitleWithValue
             title="stock availability."
-            value={stock.toString()}
+            value={`${stock.toString()} items`}
             style={styles.smallTitle}
           />
           <View style={styles.categoryContainer}>
@@ -61,6 +95,11 @@ const ProductDetails: FC<Props> = ({route, navigation}) => {
           {reviews.map((review, index) => (
             <ReviewItem review={review} />
           ))}
+          <Button
+            style={{marginTop: 24}}
+            title="Schedule this Buy"
+            onPress={handleCreateEvent}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>
