@@ -3,6 +3,8 @@ import {Text, View} from 'react-native';
 import styles from './style';
 import {formatDecimal} from '../../utils/format';
 import Icon from '@react-native-vector-icons/ionicons';
+import {useStyles} from 'react-native-unistyles';
+import stylesheet from './style';
 
 interface Props {
   rate: number;
@@ -14,8 +16,10 @@ const Rating: FC<Props> = ({rate, maxStars = 5}) => {
   const hasHalfStar = rate % 1 >= 0.5;
   const emptyStars = maxStars - fullStars - (hasHalfStar ? 1 : 0);
 
+  const {styles} = useStyles(stylesheet);
+
   return (
-    <View style={styles.container}>
+    <View>
       <View style={styles.row}>
         <Text style={styles.ratingValue}>{formatDecimal(rate)}</Text>
         <Text style={styles.ratingDescription}> rating</Text>

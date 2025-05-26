@@ -14,6 +14,8 @@ import Loader from '../../components/Loader';
 import Filters from '../../components/Filters';
 import {Product} from '../../api/domain/product';
 import TryAgain from '../../components/TryAgain';
+import {useStyles} from 'react-native-unistyles';
+import stylesheet from './style';
 
 const All = 'All';
 
@@ -24,6 +26,8 @@ const Home = () => {
   const [productList, setProductList] = useState<Product[]>(data);
 
   const navigation = useNavigation<NavigationProp<HomeParams>>();
+
+  const {styles} = useStyles(stylesheet);
 
   useEffect(() => {
     if (currentCategory === All) {

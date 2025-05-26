@@ -6,6 +6,8 @@ import {
   View,
 } from 'react-native';
 import styles from './style';
+import {useStyles} from 'react-native-unistyles';
+import stylesheet from './style';
 
 interface Props extends TouchableOpacityProps {
   title: string;
@@ -13,6 +15,7 @@ interface Props extends TouchableOpacityProps {
 }
 
 const Button: FC<Props> = ({title, onPress, style}) => {
+  const {styles} = useStyles(stylesheet);
   return (
     <TouchableOpacity
       style={[styles.container, style]}

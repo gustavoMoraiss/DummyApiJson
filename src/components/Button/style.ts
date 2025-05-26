@@ -1,20 +1,21 @@
 import {StyleSheet} from 'react-native';
 import colors from '../../constants/colors';
+import {createStyleSheet} from 'react-native-unistyles';
 
-const styles = StyleSheet.create({
+const stylesheet = createStyleSheet(theme => ({
   container: {
     flexDirection: 'column',
     alignItems: 'center',
     width: '100%',
-    backgroundColor: colors.textGray,
+    backgroundColor: theme.colors.shape,
     borderRadius: 15,
     height: 50,
     justifyContent: 'center',
   },
   title: {
-    fontSize: 17,
-    color: colors.lightGray,
+    fontSize: theme.fonts.sizes.base,
+    color: theme.colors.primary,
   },
-});
+}));
 
-export default styles;
+export default stylesheet;

@@ -1,6 +1,8 @@
 import React, {FC} from 'react';
 import {StyleProp, Text, TextStyle, View} from 'react-native';
 import styles from './style';
+import {useStyles} from 'react-native-unistyles';
+import stylesheet from './style';
 
 interface Props {
   title: string;
@@ -15,6 +17,7 @@ const Header: FC<Props> = ({
   headingStyle,
   subHeadingStyle,
 }) => {
+  const {styles} = useStyles(stylesheet);
   return (
     <View style={styles.container}>
       <Text style={[styles.title, headingStyle]}>{title}</Text>
