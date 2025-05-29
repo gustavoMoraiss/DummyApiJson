@@ -57,48 +57,49 @@ const Home = () => {
       />
     );
 
-  return (
-    <SafeAreaView style={styles.container}>
-      <FlatList
-        data={productList}
-        ListEmptyComponent={
-          <TouchableOpacity onPress={() => console.log(data)}>
-            <Text>No item found</Text>
-          </TouchableOpacity>
-        }
-        numColumns={2}
-        style={{flexGrow: 1}}
-        showsVerticalScrollIndicator={false}
-        ListHeaderComponent={
-          <>
-            <AppBar />
-            <Header title="Hello" subTitle="Welcome to Laza." />
-            <Text style={styles.categoryHeading}>Choose Category</Text>
-            <Categories
-              selectedCategory={currentCategory}
-              onCategoryPress={setCurrentCategory}
-              categories={[All, ...getAllCategories]}
-            />
-            <Filters
-              onFilterByPriceClick={sortByPricing}
-              onFilterByRatingClick={sortByRating}
-            />
-          </>
-        }
-        keyExtractor={product => String(product.id)}
-        renderItem={({item}) => (
-          <ProductCard
-            title={item.title}
-            price={formatUSD(item.price)}
-            imageSrc={item.thumbnail}
-            onPress={() => {
-              navigation.navigate('ProductDetails', {itemProduct: item});
-            }}
-          />
-        )}
-      />
-    </SafeAreaView>
-  );
+  return <Loader />;
+  // return (
+  //   <SafeAreaView style={styles.container}>
+  //     <FlatList
+  //       data={productList}
+  //       ListEmptyComponent={
+  //         <TouchableOpacity onPress={() => console.log(data)}>
+  //           <Text>No item found</Text>
+  //         </TouchableOpacity>
+  //       }
+  //       numColumns={2}
+  //       style={{flexGrow: 1}}
+  //       showsVerticalScrollIndicator={false}
+  //       ListHeaderComponent={
+  //         <>
+  //           <AppBar />
+  //           <Header title="Hello" subTitle="Welcome to Laza." />
+  //           <Text style={styles.categoryHeading}>Choose Category</Text>
+  //           <Categories
+  //             selectedCategory={currentCategory}
+  //             onCategoryPress={setCurrentCategory}
+  //             categories={[All, ...getAllCategories]}
+  //           />
+  //           <Filters
+  //             onFilterByPriceClick={sortByPricing}
+  //             onFilterByRatingClick={sortByRating}
+  //           />
+  //         </>
+  //       }
+  //       keyExtractor={product => String(product.id)}
+  //       renderItem={({item}) => (
+  //         <ProductCard
+  //           title={item.title}
+  //           price={formatUSD(item.price)}
+  //           imageSrc={item.thumbnail}
+  //           onPress={() => {
+  //             navigation.navigate('ProductDetails', {itemProduct: item});
+  //           }}
+  //         />
+  //       )}
+  //     />
+  //   </SafeAreaView>
+  // );
 };
 
 export default React.memo(Home);

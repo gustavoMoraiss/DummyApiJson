@@ -29,11 +29,16 @@ const Loader = () => {
 
   return (
     <View>
-      <Animated.View style={transform}>
-        <View style={styles.container}>
-          <Icon name="unlink-outline" size={48} color={theme.colors.primary} />
-        </View>
-      </Animated.View>
+      <View style={styles.container}>
+        <Animated.View style={transform}>
+          <Icon
+            name="unlink-outline"
+            size={48}
+            color={theme.colors.primary}
+            style={styles.icon}
+          />
+        </Animated.View>
+      </View>
     </View>
   );
 };
