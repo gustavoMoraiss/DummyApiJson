@@ -1,6 +1,6 @@
 # 🛒 Dummy Api Json App
 
-This is a React Native mobile application developed as part of an interview challenge. The goal of this project is to demonstrate proficiency in building performant and well-structured mobile applications using modern tools and libraries in the React Native ecosystem.
+This is a React Native mobile application developed a challenge. The goal of this project is to demonstrate proficiency in building performant and well-structured mobile applications using modern tools and libraries in the React Native ecosystem.
 
 ## ✨ Overview
 
@@ -46,4 +46,6 @@ Product data is fetched from the [DummyJSON API](https://dummyjson.com/docs/prod
 git clone https://github.com/your-username/laza-ecommerce-app.git
 cd DummyApiJson
 yarn install
+yarn android
+yarn start
 ```
